@@ -1,38 +1,143 @@
-.App {
-  text-align: center;
+* {
+  background-color: black;
+}
+.home{
+  height: 50px;
+  width: 50px;
+}
+
+#nav-logo:hover{
+  animation: App-logo-spin infinite 2s linear;
+
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  animation: App-logo-spin infinite 10s linear;
+  background-color: transparent;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+ @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+ body {
+  margin: 0;
+}
+h2{
+  color:blue
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+
+nav {
+  background: blue;
+  height: 50px;
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 40px;
+  box-sizing: border-box;
+}
+
+img {
+  height: 50px;
+  width: 50px;
+  background-color: blue;
+}
+
+#footer-logo{
+  height: 150px;
+  width: 150px;
+}
+
+
+nav > input {
+  width: 200px;
+  padding: 5px;
+}
+
+input::placeholder {
+  color: blue;
+}
+
+.main-content {
+  text-align: left;
+  padding: 40px;
+  background: black;
+  height: 100%;
+  color:aqua; 
+}
+
+table {
+  width: 100%;
+  background: black;
+  border-collapse: collapse;
+ 
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid aqua;
+}
+
+td,
+th {
+  padding: 10px 20px;
+}
+
+
+.bottom-logo-ctr {
+  text-align: center;
+  background-color: blue;
+  width: 100%;
+
+} 
+
+hr
+{border: 3px dotted aqua}
+
+input, button{
+  padding: 2px;
+  border: 2px solid white;
+}
+
+input{
+  background-color: aqua;
+  width: 80%;
+  font-weight: bolder;
+}
+
+button{
+  background-color: blue;
+  color: aqua;
+  width: 20%;
+  font-weight: bolder;
+}
+button:hover{
+  background-color: white;
+  color: blue;
+}
+
+.addCoin{
+  display: flex;
+  justify-content: space-between;
+  min-width: 215px;
+}
+
+.coinLink:hover{
+  background-color: blue;
+}
+
+a:hover{
+  background-color: blue;
 }

@@ -1,25 +1,74 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from "react";
+import { Routes, Route} from "react-router-dom";
+import CryptoDetail from './CryptoDetail';
+import CryptoMain from './CryptoMain';
+import defaultCoins from './DefaultCoins';
 
-function App() {
+// Use this API
+// https://api2.binance.com/api/v3/ticker/24hr
+// https://binance.us/api/v3/ticker/24hr
+
+
+export default function App() {
+
+  const [coinData, setCoinData] = useState([]);
+  const [fullCoinData, setFullCoinData] = useState([]);
+
+  useEffect(() => {
+
+      let session = sessionStorage.getItem("coins");
+
+      console.log("fetching...");
+      fetch("https://api.coincap.io/v2/assets")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log({ data });
+         const filteredData = data.data.filter((ticker) => {
+          if (defaultCoins.includes(ticker.id)) {
+            return true;
+          }
+          return false;
+        }); 
+        // console.log(filteredData);
+        setFullCoinData(data.data);
+
+        if(!session){
+          sessionStorage.setItem("coins",defaultCoins);
+          setCoinData(filteredData);
+
+        }else{
+          const sessionCoins = data.data.filter((ticker) => {
+            if (session.includes(ticker.id)) {
+              return true;
+            }
+            return false;
+          }); 
+        setCoinData(sessionCoins);
+        }
+
+      });
+
+  }, []);
+
+  //console.log({ coinData });  
+
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+
+    <Routes>
+      <Route path="/" element={<CryptoMain coinData={coinData} fullCoinData={fullCoinData} setCoinData={setCoinData}/>} />
+      <Route path="/:id" element={<CryptoDetail coinData={coinData} fullCoinData={fullCoinData} setCoinData={setCoinData}/>} />  
+    </Routes>   
+
+
     </div>
+
+
+
+
   );
 }
-
-export default App;
